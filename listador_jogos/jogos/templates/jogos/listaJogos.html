@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Lista de Jogos</title>
+		<link rel="stylesheet" href="{% static 'jogos/css/style.css' %}">
+	</head>
+	<body>
+		<h1>Lista de Jogos na Biblioteca</h1>
+		<table>
+			<tr>
+				<th>Nome do jogo</th>
+				<th>Ano de lançamento</th>
+				<th>Empresa</th>
+			</tr>
+			{% for jogo in jogos %}
+			<tr>
+				<td>{{ jogo.nome }}</td>	
+				<td>{{ jogo.ano }}</td>	
+				<td>{{ jogo.empresa }}</td>	
+				<td><a href="{% url 'jogos:atualiza-jogo' pk=jogo.id %}">Atualizar</a></td>
+				<td><a href="{% url 'jogos:delete-jogo' pk=jogo.id %}">Excluir</a></td>
+			</tr>
+			{% empty %}
+			<tr>
+				<th colspan="5">Não há jogos registrados</th>
+			</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>

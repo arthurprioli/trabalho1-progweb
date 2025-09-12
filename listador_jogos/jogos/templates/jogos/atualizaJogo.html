@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Atualiza Jogo</title>
+	</head>
+	<body>
+		<h1>Atualização de Jogo</h1>
+		<form method="post" class="formulario">
+			{% csrf_token %}
+			<table>
+				{{ jogo.as_table }}
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Atualiza"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
