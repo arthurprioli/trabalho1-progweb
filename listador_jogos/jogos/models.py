@@ -12,6 +12,11 @@ class Jogo(models.Model):
                                   MinValueValidator(1900),
                                   MaxValueValidator(datetime.now().year)
                               ])
+    
+    capa = models.CharField(
+        max_length=256, help_text="Insira a capa do jogo"
+    )
+    
     empresa = models.CharField(
         max_length=256, help_text='Insira o nome da empresa')
 

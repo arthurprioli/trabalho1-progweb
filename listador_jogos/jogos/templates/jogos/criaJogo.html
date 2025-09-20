@@ -1,22 +1,55 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Cria Contato</title>
-		<link rel="stylesheet"
-		href="{% static 'contatos/css/estilo.css' %}">
-	</head>
-	<body>
-		<h1>Cria um contato</h1>
-		<form action="" method="POST">
-			<fieldset style="width: max-content;">
-				<legend>Formulário de Cadastro</legend>
-				{% csrf_token %}
-				<table class='formulario'>
-					{{ formulario.as_table }}
-				</table>
-				<button type="submit">Cria jogo</button>
-			</fieldset>
-		</form>
-	</body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cria jogo</title>
+    <link rel="stylesheet" href="{% static 'jogos/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="bg-dark text-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg border-0 bg-secondary">
+                    <div class="card-body p-4">
+                        <h2 class="text-center text-info mb-4">🕹️ Criar Jogo</h2>
+
+                        <form action="" method="POST">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label for="{{ formulario.nome.id_for_label }}" class="form-label">Nome</label>
+                                {{ formulario.nome }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ formulario.ano.id_for_label }}" class="form-label">Ano</label>
+                                {{ formulario.ano }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ formulario.capa.id_for_label }}" class="form-label">Capa (URL da imagem)</label>
+                                {{ formulario.capa }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ formulario.empresa.id_for_label }}" class="form-label">Empresa</label>
+                                {{ formulario.empresa }}
+                            </div>
+
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-success btn-lg shadow">
+                                    💾 Criar jogo
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

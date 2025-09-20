@@ -1,0 +1,23 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+}
+
+.btn-outline-info:hover {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
