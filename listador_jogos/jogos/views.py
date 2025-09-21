@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.forms import UserCreationForm
 from jogos.models import Jogo
 from jogos.forms import JogoModel2Form
 from django.views.generic import View
@@ -59,3 +60,17 @@ class JogoDeleteView(View):
         jogo = Jogo.objects.get(pk=pk)
         jogo.delete()
         return HttpResponseRedirect(reverse_lazy('jogos:lista-jogos'))
+
+def segurancahome(request):
+    return render(request,"Login/base.html")
+
+def register(request):
+    if request.method == 'POST':
+        formulario = UserCreationForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('jogos:segurancahome')
+    else:
+        formulario = UserCreationForm()
+    context = {'form': formulario, }
+    return render(request,'Login/register.html', context)
