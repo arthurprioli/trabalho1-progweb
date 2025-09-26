@@ -10,7 +10,7 @@ urlpatterns = [
          views.JogoUpdateView.as_view(), name='atualiza-jogo'),
     path('excluiJogo/<int:pk>',
          views.JogoDeleteView.as_view(), name='delete-jogo'),
-    path('home', views.JogoListView.as_view(), name='home-jogos'),
+    path('', views.JogoListView.as_view(), name='home-jogos'),
     path('seguranca/', views.segurancahome, name='segurancahome'),
     path('seguranca/register', views.register, name='register'),
 ]

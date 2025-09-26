@@ -10,13 +10,11 @@
 <body>
 <h1>Site Seguro</h1>
 <div>
-    <a href="/jogos/home">Home</a>
-    <a href="/jogos/seguranca">seguranca</a>
+    <a href="{% url 'jogos:home-jogos'%}">Home</a>
     | Você é {% firstof user.username "visitante" %}
     {% if not user.is_authenticated %}
     | <a href="{% url 'jogos:register' %}">Registrar</a>
     {% endif %}
-    | Você é {% firstof user.username "visitante" %}
 </div>
 <hr>
 {% block content %}{% endblock %}
