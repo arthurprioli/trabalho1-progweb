@@ -27,11 +27,13 @@
             <div class="d-flex align-items-center">
                 <span class="me-3">Você é {% firstof user.username "visitante" %}</span>
                 {% if not user.is_authenticated %}
-                    <a class="btn btn-sm btn-outline-light" href="{% url 'jogos:register' %}">Registrar</a>
+                <a class="btn btn-sm btn-outline-light mr-3" href="{% url 'login' %}?next={% url 'user-page' %}">Login</a>
+                <a class="btn btn-sm btn-outline-light" href="{% url 'register' %}">Registrar</a>
                 {% else %}
                     <form method="post" action="{% url 'logout' %}">{% csrf_token %}
                         <button class="btn btn-sm btn-outline-light" type="submit">Sair</button>
                     </form>
+                    <a href="{% url 'password-change' %}">Trocar senha</a>
                 {% endif %}
             </div>
         </div>

@@ -16,12 +16,28 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth.views import PasswordChangeDoneView, PasswordChangeView
 from django.urls import path
+from django.urls.base import reverse_lazy
 from django.urls.conf import include
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jogos/', include('jogos.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-]
+    path('seguranca/register/', views.register, name='register'),
+    path('seguranca/login/', LoginView.as_view(template_name="seguranca/login.html"), name='login'),
+    path('seguranca/profile/', views.UserPageView, name='user-page'),
+    path('seguranca/logout/', LogoutView.as_view(
+        next_page=reverse_lazy('jogos:home-jogos')
+    ), name='logout'),
+    path('seguranca/passwordChange/', PasswordChangeView.as_view(
+        template_name="seguranca/passwordChangeForm.html",
+        success_url=reverse_lazy('password-change-done')
+    ), name='password-change'),
+    path('seguranca/passwordChangeDone/', PasswordChangeView.as_view(
+        template_name="seguranca/passwordChangeDone.html",
+    ), name='password-change-done')]
