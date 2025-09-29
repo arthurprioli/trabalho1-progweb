@@ -11,4 +11,5 @@ urlpatterns = [
     path('excluiJogo/<int:pk>',
          views.JogoDeleteView.as_view(), name='delete-jogo'),
     path('', views.JogoListView.as_view(), name='home-jogos'),
+    path('jogo/<int:pk>/listaAvaliacao', views.JogoAvaliacao.as_view(),name='ve-avaliacao')
 ]

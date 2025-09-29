@@ -1,0 +1,53 @@
+{% extends 'jogos/base.html' %}
+{% load static %}
+
+{% block title %}Detalhes do Jogo{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  <!-- Card do jogo centralizado -->
+  <div class="d-flex justify-content-center mb-5">
+    <div class="card h-100 shadow-sm border-0 bg-secondary text-light" style="max-width: 22rem;">
+      <img src="{{ jogo.capa }}" class="card-img-top" alt="{{ jogo.nome }}"
+           style="height:250px; object-fit:cover;">
+
+      <div class="card-body text-center">
+        <h5 class="card-title text-white">{{ jogo.nome }}</h5>
+        <p class="text-light mb-1">{{ jogo.ano }}</p>
+        <p class="fw-semibold text-warning">{{ jogo.empresa }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulário de avaliação -->
+  <div class="mb-4">
+    <h3 class="text-info">Deixe sua avaliação</h3>
+    <form actin="" method="POST" class="d-flex flex-column gap-3">
+      {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.avaliacao.id_for_label }}" class="form-label">Sua avaliação</label>
+            {{ form.avaliacao }}
+        </div>
+      <button type="submit" class="btn btn-warning">Enviar</button>
+    </form>
+  </div>
+
+  <!-- Lista de avaliações -->
+  <div>
+    <h3 class="text-info">Avaliações</h3>
+    <ul class="list-unstyled">
+      {% for av in avaliacoes %}
+        <li class="mb-3 p-3 bg-dark rounded">
+          <strong>{{ av.autor }}</strong>
+          <small class="text-muted"> • {{ av.created_at|date:"d/m/Y H:i" }}</small><br>
+          {{ av.avaliacao }}
+        </li>
+      {% empty %}
+        <li>Nenhuma avaliação ainda.</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+{% endblock %}
