@@ -40,4 +40,5 @@ urlpatterns = [
     ), name='password-change'),
     path('seguranca/passwordChangeDone/', PasswordChangeView.as_view(
         template_name="seguranca/passwordChangeDone.html",
-    ), name='password-change-done')]
+    ), name='password-change-done'),
+    path('perfil/<int:pk>/',views.ProfileView.as_view(),name='perfil')]

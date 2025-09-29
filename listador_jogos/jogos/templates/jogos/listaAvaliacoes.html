@@ -39,7 +39,7 @@
     <ul class="list-unstyled">
       {% for av in avaliacoes %}
         <li class="mb-3 p-3 bg-dark rounded">
-          <strong>{{ av.autor }}</strong>
+          <a href="{% url 'perfil' pk=av.autor.id%}"><strong>{{ av.autor }}</strong></a>
           <small class="text-muted"> • {{ av.created_at|date:"d/m/Y H:i" }}</small><br>
           {{ av.avaliacao }}
         </li>

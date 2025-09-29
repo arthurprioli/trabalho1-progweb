@@ -1,0 +1,17 @@
+{% extends 'jogos/base.html' %}
+{% load static %}
+
+{% block title %}Avaliacoes feitas por esse perfil{% endblock %}
+
+{% block content %}
+<h3 class="text-info">Avaliações de {{perfil.username}}</h3>
+    {%for av in avaliacoes%}
+        <li class="mb-3 p-3 bg-dark rounded">
+            <strong>{{ av.autor }} avaliou {{av.jogo.nome}} em {{av.data}}</strong>
+            <small class="text-muted"> • {{ av.created_at|date:"d/m/Y H:i" }}</small><br>
+            {{ av.avaliacao }}
+        </li>
+    {% empty %}
+      <li>Nenhuma avaliação ainda.</li>
+    {%endfor%}
+{% endblock %}
