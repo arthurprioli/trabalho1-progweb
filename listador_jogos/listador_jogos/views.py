@@ -19,6 +19,9 @@ def register(request):
 def logout(req):
     return render(req, 'seguranca/logout.html')
 
+def jogosView(req):
+    return render(req, 'jogos/listaJogos.html')
+
 @login_required
 def UserPageView(req):
     return render(req, 'seguranca/userPage.html')
@@ -32,3 +35,4 @@ class ProfileView(View):
             "avaliacoes": avaliacoes
         }
         return render(req, "perfil/avaliacoesPerfil.html",context)
+

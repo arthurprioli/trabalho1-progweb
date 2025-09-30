@@ -1,9 +1,15 @@
 {% extends 'seguranca/base.html' %}
 {% block title %}Página Secreta{% endblock %}
 {% block content %}
-<h2>Página Secreta</h2>
+<h2>Página de {{ user.username }}</h2>
 <p>
-Este é o conteúdo da página secreta.
-Esse conteúdo somente pode ser visto por usuários autenticados.
+  Avaliações feitas por você:
+  <ul>
+    {% for avaliacao in user.avaliacoes.all %}
+      <li>{{ avaliacao.jogo.nome }}: {{ avaliacao.nota }} - {{ avaliacao.comentario }}</li>
+    {% empty %}
+      <li>Você ainda não fez nenhuma avaliação.</li>
+    {% endfor %}
+  </ul>
 </p>
 {% endblock %}

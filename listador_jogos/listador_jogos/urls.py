@@ -25,6 +25,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 
 urlpatterns = [
+    path('', views.jogosView, name='home'),
     path('admin/', admin.site.urls),
     path('jogos/', include('jogos.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
@@ -38,7 +39,7 @@ urlpatterns = [
         template_name="seguranca/passwordChangeForm.html",
         success_url=reverse_lazy('password-change-done')
     ), name='password-change'),
-    path('seguranca/passwordChangeDone/', PasswordChangeView.as_view(
+    path('seguranca/passwordChangeDone/', PasswordChangeDoneView.as_view(
         template_name="seguranca/passwordChangeDone.html",
     ), name='password-change-done'),
     path('perfil/<int:pk>/',views.ProfileView.as_view(),name='perfil')]
