@@ -21,7 +21,7 @@ from django.urls import path
 from django.urls.base import reverse_lazy
 from django.urls.conf import include
 from django.conf.urls.static import static
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 from . import views
 
 urlpatterns = [
@@ -30,7 +30,7 @@ urlpatterns = [
     path('jogos/', include('jogos.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('seguranca/register/', views.register, name='register'),
-    path('seguranca/login/', LoginView.as_view(template_name="seguranca/login.html"), name='login'),
+    path('seguranca/login/', views.CustomLoginView.as_view(), name='login'),
     path('seguranca/profile/', views.UserPageView, name='user-page'),
     path('seguranca/logout/', LogoutView.as_view(
         next_page=reverse_lazy('jogos:home-jogos')

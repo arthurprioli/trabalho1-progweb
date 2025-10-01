@@ -125,3 +125,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'jogos:home-jogos'
+# Where to redirect users after a successful login when no "next" is provided.
+# If you prefer a different default, change this to a URL or a URL pattern name.
+LOGIN_REDIRECT_URL = 'user-page'

@@ -19,6 +19,9 @@
                         <h5 class="card-title text-white">{{ jogo.nome }}</h5>
                         <p class="text-light mb-1">{{ jogo.ano }}</p>
                         <p class="fw-semibold text-warning">{{ jogo.empresa }}</p>
+                        {% if user.is_authenticated and jogo.id in avaliadas_ids %}
+                        <p class="fw-semibold mt-2 text-light">Você já avaliou este jogo.</p>
+                        {% endif %}
                     </div>
                 </a>
                 <div class="card-footer d-flex justify-content-between bg-dark border-0">
@@ -35,11 +38,19 @@
         </div>
         {% endfor %}
     </div>
-
+    {% if user.is_authenticated %}
     <div class="text-center mt-5">
         <a href="{% url 'jogos:cria-jogo' %}" class="btn btn-success btn-lg shadow">
             ➕ Criar um novo jogo
         </a>
     </div>
+    {% else %}
+    <div class="text-center mt-5">
+        <a href="{% url 'jogos:cria-jogo' %}" class="btn btn-success btn-lg shadow disabled">
+            ➕ Criar um novo jogo
+        </a>
+        <p class="text mt-2">Faça login para adicionar novos jogos.</p>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

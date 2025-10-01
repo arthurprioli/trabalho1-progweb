@@ -12,7 +12,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class JogoListView(View):
     def get(self, req, *args, **kwargs):
         jogos = Jogo.objects.all()
-        contexto = {'jogos': jogos}
+        # Determine which jogos the current user has evaluated (if authenticated)
+        avaliadas_ids = []
+        if req.user.is_authenticated:
+            avaliadas_ids = list(
+                Avaliacao.objects.filter(autor=req.user).values_list('jogo_id', flat=True)
+            )
+
+        contexto = {'jogos': jogos, 'avaliadas_ids': avaliadas_ids}
         return render(
             req,
             'jogos/listaJogos.html',
@@ -96,4 +103,3 @@ class JogoAvaliacao(LoginRequiredMixin, View):
             "form": form,
         }
         return render(req, f'jogo/{jogo.id}/avaliacoes',context)
-    
