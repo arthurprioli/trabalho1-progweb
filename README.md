@@ -42,5 +42,6 @@ localhost:8000
 primeiro usuário criado avaliou
 
 **Para alterar um jogo, aperte em Atualizar e insira as informações novas/corrigidas**
+
 **Para remover um jogo, clique em Excluir e confirme a exclusão do jogo**
 
