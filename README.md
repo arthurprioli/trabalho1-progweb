@@ -1,5 +1,9 @@
 # Sistema de Avaliação de Jogos
 
+## Nomes
+- Felipe Lourenço Barcellos
+- Arthur Prioli
+
 ## O Que Foi Desenvolvido Até o Momento:
  - CRUD para inserção de jogos
  - Templates HTML e backend em Django
